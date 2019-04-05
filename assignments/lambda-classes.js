@@ -33,8 +33,8 @@ class Student extends Person {
     this.favSubjects = studentAttr.favSubjects;
   }
 
-  listsSubjects(favSubjects = []) {
-    favSubjects.forEach((value) => {
+  listsSubjects() {
+    this.favSubjects.forEach((value) => {
       console.log(value);
     })
   }
@@ -88,7 +88,7 @@ const Carlos = new Student({
 });
 // console.log(Carlos);
 // console.log(Carlos.introduction());
-// console.log(Carlos.listsSubjects(Carlos.favSubjects));
+// Carlos.listsSubjects();
 // console.log(Carlos.PRAssignment('JavaScript'));
 // console.log(Carlos.sprintChallenge('JavaScript'));
 // console.log(Cam.grade(Carlos, 'Nothing'));
