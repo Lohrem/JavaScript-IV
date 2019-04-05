@@ -10,7 +10,7 @@ class Person {
     return `Hello my name is ${this.name}, I am from ${this.location}`;
   }
 }
-class Instructors extends Person {
+class Instructor extends Person {
   constructor(instructorAttr) {
     super(instructorAttr);
     this.specialty = instructorAttr.specialty;
@@ -20,8 +20,8 @@ class Instructors extends Person {
   demo(subject) {
     return `Today we are learning about ${subject}`;
   }
-  grade(student, subject) {
-    return `${student.name} receives a perfect score on ${subject}`;
+  grade(Student, subject) {
+    return `${Student.name} receives a perfect score on ${subject}`;
   }
 }
 
@@ -33,18 +33,20 @@ class Student extends Person {
     this.favSubjects = studentAttr.favSubjects;
   }
 
-  listsSubjects(favSubjects) {
-    for (let subject of favSubjects) console.log(subject);
+  listsSubjects(favSubjects = []) {
+    favSubjects.forEach((value) => {
+      console.log(value);
+    })
   }
   PRAssignment(subject) {
-    return `${student.name} has submitted a PR for ${subject}`;
+    return `${this.name} has submitted a PR for ${subject}`;
   }
   sprintChallenge(subject) {
-    return `${student.name} has begun sprint challenge on ${subject}`;
+    return `${this.name} has begun sprint challenge on ${subject}`;
   }
 }
 
-class ProjectManagers extends Instructors {
+class ProjectManager extends Instructor {
   constructor(PMAttr) {
     super(PMAttr);
     this.gradClassName = PMAttr.gradClassName;
@@ -53,9 +55,60 @@ class ProjectManagers extends Instructors {
   standUp(channel) {
     return `${this.name} announces to ${channel}, @channel standy times!​​​​​`;
   }
-  debugsCode(student, subject) {
-    return `${this.name} debugs ${student.name}'s code on ${subject}`;
+  debugsCode(Student, subject) {
+    return `${this.name} debugs ${Student.name}'s code on ${subject}`;
   }
 }
 
-//------ Objects
+//------ Objects ------\\
+
+//------ Instructors
+const Cam = new Instructor({
+  name: 'Cam Pope',
+  location: 'West Coast',
+  age: 30,
+  gender: 'Male',
+  specialty: 'Drinking water',
+  favLanguage: 'Javascript',
+  catchPhrase: `Why isn't this working?`,
+});
+// console.log(Cam);
+// console.log(Cam.introduction());
+// console.log(Cam.demo('JavaScript'));
+
+//------ Students
+const Carlos = new Student({
+  name: 'Carlos Sanchez',
+  location: 'Florida',
+  age: 21,
+  gender: 'Male',
+  previousBackground: `Went to a vocational school for programming`,
+  className: 'WebPT5',
+  favSubjects: ['Math', 'Gym', 'Lunch']
+});
+// console.log(Carlos);
+// console.log(Carlos.introduction());
+// console.log(Carlos.listsSubjects(Carlos.favSubjects));
+// console.log(Carlos.PRAssignment('JavaScript'));
+// console.log(Carlos.sprintChallenge('JavaScript'));
+// console.log(Cam.grade(Carlos, 'Nothing'));
+
+//------ PMs
+const Joseph = new ProjectManager({
+  name: 'Joseph Stanfield',
+  location: 'Not sure',
+  age: 30,
+  gender: 'Male',
+  specialty: 'Drawing',
+  favLanguage: 'Python',
+  catchPhrase: 'It works on my machine.',
+  gradClassName: 'WEBPT5',
+  favInstructor: 'Cam Pope'
+});
+
+// console.log(Joseph);
+// console.log(Joseph.introduction());
+// console.log(Joseph.demo('Python'));
+// console.log(Joseph.grade(Carlos, 'Python'));
+// console.log(Joseph.standUp('webpt5'));
+// console.log(Joseph.debugsCode(Carlos, 'Python'));
